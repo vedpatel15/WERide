@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <!-- Custom CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+  />
+    <title>Sign Up</title>
+    <style>
+      body{
+          background: linear-gradient(#cfd8ef, #fff);
+          width: 100%;
+      }
+      @media only screen and (max-width: 638px) {
+        body {
+          width: 100%;
+        }
+      }
+    </style>
+</head>
+<body>
+  <section class="vh-100">
+      <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <h1 class="text-center mb-5" style="font-family:Arial, Helvetica, sans-serif;">Register</h1>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <!-- First Name -->
+                  <input type="text" class="form-control form-control-lg" id="firstName" name="firstname" required pattern="[A-Za-z]{1,50}" title="First name should only contain letters and be up to 50 characters long.">
+                  <label for="firstName">First Name:</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <!-- Last Name -->
+                  <input type="text" class="form-control form-control-lg" id="lastName" name="lastname" required pattern="[A-Za-z]{1,50}" title="Last name should only contain letters and be up to 50 characters long.">
+                  <label for="lastName">Last Name:</label>
+                </div>
+              </div>
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="email" name="email" class="form-control form-control-lg" required>
+                <label class="form-label" for="email">Email address</label>
+              </div>
+              <!-- Phone number -->
+              <div class="form-outline mb-4">
+                <input type="tel" id="phone" name="contact" pattern="[6-9]{1}[0-9]{9}" title="Phone number must start with 6-9 and be followed by 9 digits." class="form-control form-control-lg" required>
+                <label class="form-label" for="phone">Phone Number</label>
+              </div>
+              <!-- Password -->
+              <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control form-control-lg" required minlength="8" maxlength="20" pattern="[A-Za-z0-9!@#$%^&*]{8,20}" title="Password must be between 8 and 20 characters and include at least one letter, one number, and one special character.">
+                <label class="form-label" for="password">Password</label>
+              </div>
+
+              <!-- Image upload -->
+              <div class="form-outline mb-4">
+                <input type="file" id="uploadBtn" name="proof_image" accept=".jpg, .jpeg, .png" required>
+                <label for="uploadBtn">Upload Your ID (JPG, JPEG, PNG)</label>
+              </div>
+
+              <!-- Submit button -->
+              <input type="submit" class="btn btn-primary btn-lg btn-block" name="submit" value="Sign Up">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+</html>

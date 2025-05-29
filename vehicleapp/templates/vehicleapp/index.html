@@ -1,0 +1,378 @@
+{%load static%}
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+	<style>
+		#map { height: 450px; width : 100% ; }
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+	<style>
+		:root{
+	--yellow:#cfe33b;
+	--darkblue:#1a82eb;
+	--light:#cfd8ef;
+	--white:#fff;
+}
+*{margin: 0px; padding: 0px; ; }
+.clearfix{clear: both;}
+.container{width: 1200px; max-width: 100%; margin: 0 auto; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+.col2{width: 20%;float: left;}
+.col3{width: 25%; float: left;}
+.col4{width: 33.3%;float: left;}
+.col6{width: 50%; float: left;}
+.logo{display: block;float: left;}
+.s-btn{height: 45px;width: 52px;margin: -11px;background: var(--darkblue);
+    color: white; border: none; margin-right: -20px; cursor: pointer;
+}
+.s-btn:hover{background: var(--yellow); color: var(--darkblue);}
+.btn-r{padding: 11px 25px;
+    background: var(--darkblue);
+    color: white;
+    border: none;
+    margin-top: -16px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.btn-r:hover{background: var(--yellow); color: var(--darkblue);}
+
+.header-bottom{background: var(--darkblue);  padding: 8px;}
+.bottomnav li{list-style: none; float: left; padding: 13px 29px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }
+.bottomnav li a{text-decoration: none; color:var(--white); font-size:16px; font-weight: 400;}
+.active{background:var(--yellow);}
+.active a{color: var(--darkblue)!important;}
+.b-btn{    
+	padding: 13px 25px;
+    background: var(--yellow);
+    color: white;
+    border: none;
+    font-size: 16px;
+    float: right;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.taxi-img{width: 500px; height: 300px; margin-left: 80px;}
+.sec-1{ padding: 50px 0px 0px 0px;  height: 280px;
+ background: linear-gradient(var(--light), #fff);}
+.heading{font-size: 50px; color: var(--darkblue);}
+.sec-2{ padding: 100px 0px;}
+.heading-2{color: var(--darkblue); text-align: center; font-size: 40px; margin-top: 10px;}
+.border{text-align: center; margin-bottom: 50px;}
+.box{width: 200px; text-align: center;}
+.sec-4{padding: 100px 0px;}
+.box h3{font-size: 15px; color: var(--darkblue); margin:15px 0px; font-weight: 500; }
+.box p{font-size: 13px; letter-spacing: 1px; line-height: 20px;}
+.icon-1{font-size: 30px;background: #ecb34c;border-radius: 33px;
+    color: #3a3c6c;
+	height: 60px;
+    width: 60px;
+    line-height: 60px;
+}
+.heading-3{color: var(--darkblue);  font-size: 40px;}
+.p3{font-size: 13px; letter-spacing: 1px; line-height: 20px; width: 500px;}
+.p5{font-size: 13px; letter-spacing: 1px; line-height: 20px; color: var(--white);}
+.p5:after{
+	content: '';
+	position: absolute;
+	top: 75%;
+	right: 5%;
+	width: 50px;
+	height: 50px;
+	background: url(../image/quote.png);
+	background-size: 50px;
+	transform: rotateZ(184deg);
+}
+.content{float: left;padding: 41px;}
+.sec-5{background: var(--darkblue); padding: 100px 0px; position: relative; 
+	height: 150px; margin-top: -100px;}
+.footer-distributed {
+  background-color: var(--darkblue);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 45px 50px;
+}
+.footer-distributed .footer-left p {color: var(--white);font-size: 14px;margin: 0;}
+.footer-distributed p.footer-links {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+  transition: ease .25s;
+}
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease .25s;
+}
+.footer-distributed .footer-links a:before {
+  content: "/";
+  font-size: 10px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+.footer-distributed .footer-links .link-1:before {content: none;}
+.footer-distributed .footer-right {float: right;margin-top: 6px;max-width: 180px;}
+.footer-distributed .footer-right a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: var(--yellow);
+  border-radius: 2px;
+  font-size: 20px;
+  color: var(--darkblue);
+  text-align: center;
+  line-height: 35px;
+  margin-left: 3px;
+  transition:all .25s;
+}
+.footer-distributed .footer-right a:hover{transform:scale(1.1);}
+.footer-distributed p.footer-links a:hover{text-decoration:underline;}
+
+.nav_img{
+  float: left;
+  margin-left: 10px;
+  margin-top: 5px;
+  width:40px;
+}
+</style>
+	
+</head>
+<body>
+
+<header>
+	<div class="header-bottom">
+		<img src="{%static 'vehicleapp\assets\images\st.png' %}" alt="wheel_img" class="nav_img">
+		<div class="container">
+			<ul class="bottomnav">
+				<li class="active"><a href="{% url 'home' %}"><i class="fa fa-home"></i>  Home</a></li>
+				<li><a href="{% url 'profile' %}"><i class="fa fa-exclamation-circle"></i>  Account</a></li>
+				<li><a href="{% url 'ride' %}"><i class="fa fa-motorcycle"></i>  Ride</a></li>
+				<li><a href="{% url 'drive' %}"><i class="fa fa-car"></i>  Drive</a></li>
+				<li><a href="{% url 'r_activity'%}"><i class="fa fa-dashboard"></i> Ride Activity</a></li>
+				<li><a href="{% url 'd_activity'%}"><i class="fa fa-dashboard"></i> Drive Activity</a></li>
+				<li><a href="{% url 'request'%}"><i class="fa fa-dashboard"></i> Requests</a></li>
+				<li><a href="{% url 'help' %}"><i class="fa fa-map-marker"></i>  Help</a></li>
+                <li><a href="{% url 'logout' %}" onclick="return confirmLogout();"><i class="fa fa-sign-out"></i> Logout</a></li>
+			</ul>
+			
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</header>
+
+
+<section class="sec-1">
+	<div class="container">
+		<div class="col6">
+			<h1 class="heading" style="margin-bottom: 10px; font-size: 55px;">WERide</h1>
+			<div style="font-size: large;">
+		    <p> Share a ride <i class="fa fa-car"></i></p>
+			<p> Share a smile <i class="fa fa-smile-o"></i></p>
+			<p> Make the world a better place <i class="fa fa-globe"></i></p>
+			</div>
+			
+			<br>
+			<a class="btn-r" href="{% url 'ride' %}" style="text-decoration: none;">Ride Now</a>
+		</div>
+		<div class="col6">
+			<img src="{%static 'vehicleapp\assets\images\car.jpeg' %}" style="border-radius: 20%;" class="taxi-img">
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</section>
+
+
+<section class="sec-2">
+	<div class="container">
+
+		<h2 class="heading-2">Steps to Book a Ride</h2>
+		<div class="border"></div>
+		<br>
+		<div class="col3">
+			<div class="box">
+				<i class="fa fa-hand-o-up icon-1"></i>
+			<h3>Put Source and Destination</h3>
+			<p>You have to give source and destination where you want to Go.</p>
+			</div>
+		</div>
+		<div class="col3">
+			<div class="box">
+				<i class="fa fa-automobile icon-1"></i>
+			<h3>Get a Driver</h3> 
+			<p>Drivers according to your route are shown you have to request them according to your priorities.</p>
+			</div>
+		</div>
+		<div class="col3">
+			<div class="box">
+				<i class="fa fa-map-o icon-1"></i>
+			<h3>Track Your Driver</h3>
+			<p>When driver accept your request then you will be able to track them.</p>
+			</div>
+		</div>
+		<div class="col3">
+			<div class="box">
+				<i class="fa fa-user icon-1"></i>
+			<h3>Arrive Safely</h3>
+			<p>You safely arrive to your destination.</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+
+	</div>
+</section>	
+
+
+<section class="sec-3">
+	<br><br>
+	<div class="container">
+		<h2 class="heading-3">About us</h2>
+		<div class="clearfix"></div>
+		<br><br>
+		<div class="col6">
+			<p class="p3">
+		   This website allows individuals to share a ride together in a single vehicle for a specific route or destination and enables users to create a profile and provide information about their starting point, destination, and time of travel. . The website matches individuals who are traveling in the same direction and provides them the option to share the ride together.
+		   The website aims to reduce traffic congestion, reduce the number of vehicles on the road, and promote a more eco-friendly way of traveling. Vehicle pooling helps users save money on fuel and maintenance expenses and promotes socialization with other riders.
+		   The website may offer various features, such as a search bar to find rides that match your travel route and destination and options to book rides. The website may also include a rating system that allows users to rate their experience with other riders and provide feedback.
+		   Overall, a website that operates on vehicle pooling method can be an efficient and cost-effective way to travel, and it promotes a more sustainable and eco-friendly way of commuting.
+			</p>
+			<br><br>
+			<button class="btn-r">Read More</button>
+		</div>
+		<div class="col6">
+			<img src="{%static 'vehicleapp\assets\images\aboutimg.jpg' %}" style="width: 100%; margin-top: -100px; height: 400px;">
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</section>
+
+<section class="sec-4">
+	
+</section>
+
+
+<section class="sec-5">
+	<div class="container" style="margin-top: -50px;">
+		<h2 class="heading-2" style="color: var(--white); ">What About passenger says</h2>
+		
+		<div class="testimonial">
+			<p class="p5" style="margin-top: 50px;">"I recently used this vehicle pooling website to find a ride to my workplace, and I must say, it was a great experience. The driver was friendly and punctual, and the ride was comfortable and smooth. The best part was that I didn't have to worry about the hassle of driving through traffic and finding a parking spot.
+            The website was easy to use, and I could quickly search for a ride that matched my route and timing. The booking process was smooth, and I appreciated the transparent pricing system. I also liked the fact that I could see the driver's rating and reviews before booking the ride, which gave me an added sense of security.	
+			</p>
+		</div>
+	</div>
+</section>
+
+<!-- <section class="map" style="margin: 5px;">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d447986.853145337!2d76.81114849633596!3d28.692718881263545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d047309fff32f%3A0xfc5606ed1b5d46c3!2sDelhi!5e0!3m2!1sen!2sin!4v1646818342543!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section> -->
+
+<section>
+	<div id="map"></div>
+</section>
+
+<footer class="footer-distributed">
+
+<div class="footer-right">
+
+<a href="https://www.instagram.com/#"><i class="fa fa-instagram"></i></a>
+<a href="https://www.linkedin.com/in/#"><i class="fa fa-linkedin"></i></a>
+<a href="https://github.com/#"><i class="fa fa-github"></i></a>
+
+</div>
+ 
+<div class="footer-left">
+<p class="footer-links">
+<a class="link-1" href="#">Home</a>
+<a href="account.html">Account</a>
+<a href="ride.html">Ride</a>
+<a href="drive.html">Drive</a>
+<a href="activity.html">Your Activity</a>
+<a href="help.html">Help</a>
+</p>
+<p>WERide@2025</p>
+</div>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    function confirmLogout() {
+        return confirm('Are you sure you want to logout?');
+    }
+</script>
+
+<script type="text/javascript">
+	$('.bottomnav li').click(function(){
+    $('.bottomnav li').removeClass("active");
+    $(this).addClass("active");
+});	
+</script>
+<script>
+    
+	var map = L.map('map'); 
+	// Initializes map
+	
+	map.setView([51.505, -0.09], 13); 
+	// Sets initial coordinates and zoom level
+	
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 20,
+		attribution: '©WERide'
+	}).addTo(map); 
+	// Sets map data source and associates with map
+	
+	let marker, circle, zoomed;
+	
+	navigator.geolocation.watchPosition(success, error);
+	
+	function success(pos) {
+	
+		const lat = pos.coords.latitude;
+		const lng = pos.coords.longitude;
+		const accuracy = pos.coords.accuracy;
+	
+		if (marker) {
+			map.removeLayer(marker);
+			map.removeLayer(circle);
+		}
+		// Removes any existing marker and circule (new ones about to be set)
+	
+		marker = L.marker([lat, lng]).addTo(map);
+		circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+		// Adds marker to the map and a circle for accuracy
+	
+		if (!zoomed) {
+			zoomed = map.fitBounds(circle.getBounds()); 
+		}
+		// Set zoom to boundaries of accuracy circle
+	
+		map.setView([lat, lng]);
+		// Set map focus to current user position
+	
+	}
+	
+	function error(err) {
+	
+		if (err.code === 1) {
+			alert("Please allow geolocation access");
+		} else {
+			alert("Cannot get current location");
+		}
+	
+	}
+	</script>
+</body>
+</html>

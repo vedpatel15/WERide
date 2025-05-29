@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card-body{
+      background: linear-gradient(#1a82eb, #fff);
+    }
+    .card-header{
+      background-color: #1a82eb;
+    }
+    .col{
+       border: 1px solid grey
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h3>Profile</h3>
+          </div>
+          {% comment %} <div class="card-body">
+            <div class="text-center">
+              <img src="{{rid.pic.url}}" class="rounded-circle" alt="Profile Picture" width="150" height="150">
+              <br>
+              <br>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProfilePictureModal">Add Profile Picture</button>
+            </div> {% endcomment %}
+            <form action="{% url 'change_profile'%}" method="post"  enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="text-center">
+                  <img src="{{uid.pic.url}}" class="rounded-circle" alt="Profile Picture" width="150" height="150">
+                  <br>
+                  <br>
+                  {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProfilePictureModal">Add Profile Picture</button> {% endcomment %}
+                  <input type="file"  class="btn btn-primary" name="picture">
+                </div>
+                <br>
+              <div class="form-group">
+                <label for="name">Firstname:</label>
+                <input type="text" class="form-control border-dark" name="firstname"  value="{{uid.firstname}}">
+              </div>
+              <div class="form-group">
+                <label for="lastname">Lastname:</label>
+                <input type="lastname" class="form-control border-dark" name="lastname" value="{{uid.lastname}}">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" class="form-control border-dark" name="contact" value="{{uid.contact}}">
+              </div>
+            
+              {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button> {% endcomment %}
+              <input type="submit" class="btn btn-primary" name="submit" value="Save">
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h3>Ride History</h3>
+          </div>
+          <div class="card-body">
+            <p>No rides found.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+          <button type="button"
+          modal
+          class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="edit-name">Name:</label>
+              <input type="text" class="form-control" id="edit-name" placeholder="Enter Name" value="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="edit-email">Email:</label>
+              <input type="email" class="form-control" id="edit-email" placeholder="Enter Email" value="johndoe@example.com">
+            </div>
+            <div class="form-group">
+              <label for="edit-phone">Phone:</label>
+              <input type="tel" class="form-control" id="edit-phone" placeholder="Enter Phone Number" value="123-456-7890">
+            </div>
+            <h4>Vehicle Information</h4>
+            <div class="form-group">
+              <label for="edit-vehicleNumber">Vehicle Number:</label>
+              <input type="text" class="form-control" id="edit-vehicleNumber" placeholder="Enter Vehicle Number" value="ABC123">
+            </div>
+            <div class="form-group">
+              <label for="edit-licenseNumber">License Number:</label>
+              <input type="text" class="form-control" id="edit-licenseNumber" placeholder="Enter License Number" value="12345">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addProfilePictureModal" tabindex="-1" role="dialog" aria-labelledby="addProfilePictureModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProfilePictureModalLabel">Add Profile Picture</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="profilePicture">Choose File:</label>
+              <input type="file" class="form-control-file" id="profilePicture">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

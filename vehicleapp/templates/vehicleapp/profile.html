@@ -1,0 +1,276 @@
+{% load static %}
+<html>
+  <head>
+    <title>Profile Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .profile-picture {
+        width: 300px;
+        height: 300px;
+        background-position: -25px -20px;  
+        border-radius: 50%;
+        background-size: cover;
+        padding:10px;
+        border:5px solid #3a3c6c;
+        background: linear-gradient(#cfefd8, #fff);
+      }
+      body {
+        background-color: #cfd8ef;
+      }
+      .card-body {
+        background: linear-gradient(#cfefd8, #fff);
+      }
+      .card-header {
+        background-color: lightgoldenrodyellow;
+      }
+      .nav_img {
+        float: left;
+        margin-left: 10px;
+        margin-top: 5px;
+        width: 40px;
+      }
+      header {
+        background-color: #3a3c6c;
+      }
+      .navbar-nav .nav-item .nav-link {
+        color: white;
+      }
+      .navbar-nav .nav-item .nav-link:hover {
+        background-color: #ebb14d;
+      }
+      .navbar-nav .nav-item .nav-link:active {
+        background-color: #ebb14d;
+      }
+      p span {
+        background-color: #e9ecef;
+        display: block;
+        padding: 10px;
+        border: 1px solid grey;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <img src="{%static 'vehicleapp\assets\images\st.png' %}" alt="wheel_img" class="nav_img" />
+          <div
+            class="collapse navbar-collapse ms-5"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-6">
+              <li class="nav-item ms-5">
+                <a
+                  class="nav-link active text-white"
+                  aria-current="page"
+                  href="{% url 'home' %}"
+                  ><i class="fa fa-home"></i> Home</a
+                >
+              </li>
+              <li class="nav-item ms-5">
+                <a class="nav-link" aria-current="page" href="{% url 'profile' %}"
+                  ><i class="fa fa-exclamation-circle"></i> Account</a
+                >
+              </li>
+              <li class="nav-item ms-5">
+                <a class="nav-link" aria-current="page" href="{% url 'ride' %}"
+                  ><i class="fa fa-motorcycle"></i> Ride</a
+                >
+              </li>
+              <li class="nav-item ms-5">
+                <a class="nav-link" aria-current="page" href="{% url 'drive' %}"
+                  ><i class="fa fa-car"></i> Drive</a
+                >
+              </li>
+              <li class="nav-item ms-5">
+                <a class="nav-link" aria-current="page" href="{% url 'r_activity' %}"
+                  ><i class="fa fa-dashboard"></i> Ride Activity</a
+                >
+              </li>
+              <li class="nav-item ms-5">
+                <a class="nav-link" aria-current="page" href="{% url 'd_activity' %}"
+                  ><i class="fa fa-dashboard"></i> Drive Activity</a
+                >
+              </li>
+              <li class="nav-item ms-5">
+                <a class="nav-link" aria-current="page" href=""
+                  ><i class="fa fa-map-marker"></i> Help</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <img
+            src="{{uid.pic.url}}"
+            class="profile-picture mb-3"
+            alt="Profile Picture"
+          />
+        </div>
+        <div class="col-md-8">
+          <h2>Profile Details</h2>
+          <p><b class="fs-5">Name:</b> <br /><span>{{uid.firstname}} {{uid.lastname}}</span></p>
+          <p><b class="fs-5">Phone: </b><br /><span>{{uid.contact}}</span></p>
+          <p><b class="fs-5">Email:</b> <br /><span>{{uid.email}}</span></p>
+
+          {% comment %} <h3>Vehicle Details</h3>
+          <p><b class="fs-5">Vehicle Number:</b> <span>jbdfkje</span></p>
+          <p><b class="fs-5">License Number:</b><span>nefkewkk</span></p> {% endcomment %}
+
+          {% comment %} <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Edit Profile
+          </button> {% endcomment %}
+          <a href="{% url 'change_profile'%}" class="btn btn-primary"  data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Edit Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Your Details</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="{% url 'change_profile'%}" method="post"  enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="text-center">
+                <img src="{{uid.pic.url}}" class="rounded-circle" alt="Profile Picture" width="150" height="150">
+                <br>
+                <br>
+                <input type="file"  class="btn btn-primary" name="picture">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="edit-name">First Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-name"
+                  name="firstname"
+                  value="{{uid.firstname}}"
+                />
+              </div>
+              <div class="form-group">
+                <label for="edit-name">Last Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-name"
+                  name="lastname"
+                  value="{{uid.lastname}}"
+                />
+              </div>
+              <div class="form-group">
+                <label for="edit-name">Email:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="edit-name"
+                  placeholder="Enter Name"
+                  value="{{uid.email}}"
+                  readonly
+                />
+              </div>
+              <div class="form-group">
+                <label for="edit-phone">Phone:</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="edit-phone"
+                  name="contact"
+                  value="{{uid.contact}}"
+                />
+              </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                {% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+                <input type="submit" class="btn btn-primary"  data-bs-dismiss="modal" name="submit" value="Save Changes">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#editButton").click(function () {
+          $(".form-control").removeAttr("readonly");
+          $("#editButton").addClass("d-none");
+          $("#saveButton").removeClass("d-none");
+        });
+
+        $("#saveButton").click(function () {
+          $(".form-control").attr("readonly", true);
+          $("#saveButton").addClass("d-none");
+          $("#editButton").removeClass("d-none");
+        });
+      });
+    </script>
+  </body>
+</html>

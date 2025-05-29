@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP VERIFICATION</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <style>
+        *{
+           box-sizing : border-box;
+         }
+         h1{
+            margin :0;
+         }
+         body{
+            font-family : 'Poppins',sans-serif;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(bg4.jpg.avif);
+            background-size:cover;
+            height :100vh;
+         }
+         .otp-card{
+            text-align: center;
+            background-color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px -20px black;
+         }
+         .otp-card-inputs{
+            margin:30px 0;
+            display:grid;
+            gap: 30px;
+            justify-content: center;
+            grid-template-columns: repeat(5,auto);
+         }
+         .otp-card-inputs input{
+            width: 60px;
+            height: 70px;
+            font-size: 35px;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid black;
+         }
+         .otp-card-inputs input:focus{
+            outline: 2px solid darkslategrey;
+            border-color: transparent;
+         }
+         .otp-card button{
+            background-color: blueviolet;
+            border:none;
+            padding:15px 50px;
+            font-size :18px;
+            color: white;
+            border-radius: 20px;
+            cursor:pointer;
+            margin-top: 15px;
+         }
+         .otp-card button:hover{
+            opacity: .9;
+         }
+         .otp-card button[disabled]{
+            opacity: .6;
+            cursor: default;
+         }
+    </style>
+</head>
+<body>
+    <div class="otp-card">
+        <h1>OTP Verification</h1>
+        <p>Code has been send to your email</p>
+        <div class="otp-card-inputs">
+            <input type="text" maxlength="1" autofocus>
+            <input type="text" maxlength="1" >
+            <input type="text" maxlength="1" >
+            <input type="text" maxlength="1" >
+        </div>
+        <p>Didn't get the otp <a href="#">Resend</a></p>
+        <button onclick="handleverify()" id="verify">Verify</button>
+    </div>
+<script>
+   function handleverify()
+   {
+       
+   }
+</script>
+</body>
+</html>
